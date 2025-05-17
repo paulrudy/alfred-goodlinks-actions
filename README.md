@@ -1,4 +1,4 @@
-# GoodLinks - Alfred workflow
+# GoodLinks Actions - Alfred workflow
 
 An Alfred workflow for searching and adding links in [GoodLinks](https://goodlinks.app).
 
