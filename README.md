@@ -18,7 +18,7 @@ Note: The first time a search is invoked, Alfred may take several seconds to dis
 
 ### Add URL to GoodLinks
 
-Add a link to GoodLinks using the [Universal Action](https://www.alfredapp.com/help/features/universal-actions/), or use the keyword `gl` to add a link from the frontmost browser.
+Add a link to GoodLinks using the [Universal Action](https://www.alfredapp.com/help/features/universal-actions/), or use the keyword `glb` to add a link from the frontmost browser.
 
 By default, links are added via GoodLinks "quick save". Hold the `⌥` key to edit the link info in GoodLinks.
 
