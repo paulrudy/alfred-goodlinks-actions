@@ -15,6 +15,20 @@ const items = glApp.links().map((link) => ({
   title: link.title(),
   subtitle: link.url(),
   arg: link.url(),
+  mods: {
+    cmd: {
+      valid: true,
+      subtitle: `tags: ${link.tagNames().join(', ')}`,
+    },
+    alt: {
+      valid: true,
+      subtitle: link.url(),
+    },
+    'cmd+alt': {
+      valid: true,
+      subtitle: link.url(),
+    },
+  },
 }));
 
 const alfredItems = {
