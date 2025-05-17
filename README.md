@@ -10,6 +10,8 @@ Use the keyword `gls` to search all links. Hold `⌘` to view the link's starred
 
 Use `glu` to search unread links.
 
+Use `glx` to search starred links.
+
 Use `glt` to search for a tag, then action the result to search for links with the selected tag.
 
 Note: The first time a search is invoked, Alfred may take several seconds to display the results. After that, the results are intelligently cached and updated by Alfred, and should appear immediately.
