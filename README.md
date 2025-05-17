@@ -6,9 +6,11 @@ An Alfred workflow for searching and adding links in [GoodLinks](https://goodlin
 
 ### Search GoodLinks
 
-Search for a link in GoodLinks using the keyword `gls`. Optionally enter text to filter the results. Use `⌘` to view the link's tags, if any. Use `↩` to open the link in GoodLinks. 
+Search for a link in GoodLinks using the keyword `gls`. Optionally enter text to filter the results. Use `⌘` to view the link's tags, if any. Use `↩` to open the link in GoodLinks.
 
-Note: The first time search is invoked, Alfred may take several seconds to display the results. After that, the results are intelligently cached and updated by Alfred, and should appear immediately. 
+Search for a tag in Goodlinks using the keyword `glt`. Optionally enter text to filter the results. Use `↩` to search for links with the selected tag.
+
+Note: The first time a search is invoked, Alfred may take several seconds to display the results. After that, the results are intelligently cached and updated by Alfred, and should appear immediately.
 
 ### Add URL to GoodLinks
 

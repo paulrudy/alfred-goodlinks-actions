@@ -1,0 +1,24 @@
+#!/usr/bin/env osascript -l JavaScript
+
+'use strict';
+
+const cacheDuration =
+  $.NSProcessInfo.processInfo.environment.objectForKey('myvariable').js || 3600;
+
+const glApp = Application('GoodLinks');
+glApp.includeStandardAdditions = true;
+
+const items = glApp.tags().map((tag) => ({
+  uid: tag.id(),
+  title: tag.name(),
+  arg: tag.name(),
+}));
+
+const alfredItems = {
+  cache: { seconds: cacheDuration, loosereload: true },
+  items: items,
+};
+
+const alfredItemsJSON = JSON.stringify(alfredItems);
+
+alfredItemsJSON;
