@@ -11,17 +11,22 @@ const glApp = Application('GoodLinks');
 glApp.includeStandardAdditions = true;
 
 const items = glApp.links().map((link) => {
-  const starredText = link.starred() ? '\u2605' : '\u2606';
-  const readText = link().properties().read ? 'read' : 'unread';
-  const tagInfo = link.tagNames().length
-    ? `tags: ${link.tagNames().join(', ')}`
-    : 'untagged';
+  const uid = link.id();
+  const url = link.url();
+  const title = link.title();
+  const read = link().properties().read;
+  const starred = link.starred();
+  const tagNames = link.tagNames();
+  const summary = link.summary();
+  const starredText = starred ? '\u2605' : '\u2606';
+  const readText = read ? 'read' : 'unread';
+  const tagInfo = tagNames.length ? `tags: ${tagNames.join(', ')}` : 'untagged';
 
   return {
-    uid: link.id(),
-    title: link.title(),
-    subtitle: link.url(),
-    arg: ['open url', link.url()],
+    uid: uid,
+    title: title,
+    subtitle: url,
+    arg: ['open url', url],
     mods: {
       cmd: {
         valid: true,
@@ -30,11 +35,11 @@ const items = glApp.links().map((link) => {
       alt: {
         valid: true,
         subtitle: 'Copy the URL to the clipboard',
-        arg: ['copy url', link.url()],
+        arg: ['copy url', url],
       },
       'cmd+alt': {
         valid: true,
-        subtitle: link.summary() || link.url(),
+        subtitle: summary || url,
       },
     },
   };

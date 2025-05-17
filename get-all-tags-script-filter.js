@@ -15,17 +15,19 @@ const taggedLinks = glApp.links().reduce((result, link) => {
 }, []);
 
 const items = glApp.tags().map((tag) => {
+  const uid = tag.id();
+  const tagName = tag.name();
   const linksWithTag = taggedLinks.filter((tagNames) =>
     tagNames.includes(tag.name())
   );
 
   return {
-    uid: tag.id(),
-    title: tag.name(),
+    uid: uid,
+    title: tagName,
     subtitle: `${linksWithTag.length} link${
       linksWithTag.length > 1 ? 's' : ''
     }`,
-    arg: tag.name(),
+    arg: tagName,
   };
 });
 
