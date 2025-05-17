@@ -41,7 +41,7 @@ const items = filteredItems.map((link) => {
       },
       'cmd+alt': {
         valid: true,
-        subtitle: link.url(),
+        subtitle: link.summary() || link.url(),
       },
     },
   };

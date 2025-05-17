@@ -34,7 +34,7 @@ const items = glApp.links().map((link) => {
       },
       'cmd+alt': {
         valid: true,
-        subtitle: link.url(),
+        subtitle: link.summary() || link.url(),
       },
     },
   };
