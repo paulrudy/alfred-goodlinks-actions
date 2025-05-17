@@ -14,7 +14,7 @@ const items = glApp.links().map((link) => ({
   uid: link.id(),
   title: link.title(),
   subtitle: link.url(),
-  arg: link.url(),
+  arg: ['open url', link.url()],
   mods: {
     cmd: {
       valid: true,
@@ -22,7 +22,8 @@ const items = glApp.links().map((link) => ({
     },
     alt: {
       valid: true,
-      subtitle: link.url(),
+      subtitle: 'Copy the URL to the clipboard',
+      arg: ['copy url', link.url()],
     },
     'cmd+alt': {
       valid: true,

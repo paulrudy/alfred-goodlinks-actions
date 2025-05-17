@@ -6,7 +6,7 @@ An Alfred workflow for searching and adding links in [GoodLinks](https://goodlin
 
 ### Search GoodLinks
 
-Search for a link in GoodLinks using the keyword `gls`. Optionally enter text to filter the results. Use `⌘` to view the link's tags, if any. Use `↩` to open the link in GoodLinks.
+Search for a link in GoodLinks using the keyword `gls`. Optionally enter text to filter the results. Use `⌘` to view the link's tags, if any. Use `↩` to open the link in GoodLinks. Hold `⌥` and use `↩` to copy the link to the clipboard.
 
 Search for a tag in Goodlinks using the keyword `glt`. Optionally enter text to filter the results. Use `↩` to search for links with the selected tag.
 
