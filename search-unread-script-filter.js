@@ -11,8 +11,8 @@ const glApp = Application('GoodLinks');
 glApp.includeStandardAdditions = true;
 
 const items = glApp.links().reduce((result, link) => {
-  const starStatus = link.starred() ? '\u2605' : '\u2606';
-  const readStatus = link().properties().read ? 'read' : 'unread';
+  const starredText = link.starred() ? '\u2605' : '\u2606';
+  const readText = link().properties().read ? 'read' : 'unread';
   const tagInfo = link.tagNames().length
     ? `tags: ${link.tagNames().join(', ')}`
     : 'untagged';
@@ -26,7 +26,7 @@ const items = glApp.links().reduce((result, link) => {
       mods: {
         cmd: {
           valid: true,
-          subtitle: `${starStatus} | ${readStatus} | ${tagInfo}`,
+          subtitle: `${starredText} | ${readText} | ${tagInfo}`,
         },
         alt: {
           valid: true,
