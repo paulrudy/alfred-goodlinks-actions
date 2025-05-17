@@ -6,9 +6,11 @@ An Alfred workflow for searching and adding links in [GoodLinks](https://goodlin
 
 ### Search GoodLinks
 
-Search for a link in GoodLinks using the keyword `gls`. Optionally enter text to filter the results. Hold `⌘` to view the link's starred status,read/unread status, and tags, if any. Use `↩` to open the link in GoodLinks. Hold `⌥` and use `↩` to copy the link to the clipboard.
+Use the keyword `gls` to search all links. Hold `⌘` to view the link's starred status,read/unread status, and tags, if any. Action the result to open the link in GoodLinks, or action with `⌥` to copy the link to the clipboard.
 
-Search for a tag in Goodlinks using the keyword `glt`. The workflow will display the number of links per tag. Optionally enter text to filter the results. Use `↩` to search for links with the selected tag.
+Use `glu` to search unread links.
+
+Use `glt` to search for a tag, then action the result to search for links with the selected tag.
 
 Note: The first time a search is invoked, Alfred may take several seconds to display the results. After that, the results are intelligently cached and updated by Alfred, and should appear immediately.
 
