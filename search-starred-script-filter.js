@@ -6,6 +6,8 @@ const cacheDuration =
   Number(
     $.NSProcessInfo.processInfo.environment.objectForKey('cache_duration').js
   ) || 3600;
+const defaultSubtitle =
+  $.NSProcessInfo.processInfo.environment.objectForKey('default_subtitle').js;
 
 const glApp = Application('GoodLinks');
 glApp.includeStandardAdditions = true;
@@ -21,17 +23,18 @@ const items = glApp.links().reduce((result, link) => {
   const starredText = starred ? '\u2605' : '\u2606';
   const readText = read ? 'read' : 'unread';
   const tagInfo = tagNames.length ? `tags: ${tagNames.join(', ')}` : 'untagged';
+  const altSubtitle = `${starredText} | ${readText} | ${tagInfo}`;
 
   if (starred)
     result.push({
       uid: uid,
       title: title,
-      subtitle: url,
+      subtitle: defaultSubtitle === 'show url' ? url : altSubtitle,
       arg: url,
       mods: {
         cmd: {
           valid: true,
-          subtitle: `${starredText} | ${readText} | ${tagInfo}`,
+          subtitle: defaultSubtitle === 'show url' ? altSubtitle : url,
         },
         alt: {
           valid: true,
