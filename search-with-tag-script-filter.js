@@ -8,7 +8,6 @@ const cacheDuration =
   ) || 3600;
 const defaultSubtitle =
   $.NSProcessInfo.processInfo.environment.objectForKey('default_subtitle').js;
-
 const searchTag =
   $.NSProcessInfo.processInfo.environment.objectForKey('search_tag').js;
 
