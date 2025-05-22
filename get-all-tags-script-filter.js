@@ -28,6 +28,9 @@ const items = glApp.tags().map((tag) => {
       linksWithTag.length > 1 ? 's' : ''
     }`,
     arg: tagName,
+    text: {
+      largetype: tagName,
+    },
   };
 });
 
