@@ -51,11 +51,11 @@ const items = glApp.links().map((link) => {
   };
 });
 
-const alfredItems = {
+const scriptFilterItems = {
   cache: { seconds: cacheDuration, loosereload: true },
-  items: items,
+  ...{ items },
 };
 
-const alfredItemsJSON = JSON.stringify(alfredItems);
+const scriptFilterItemsJSON = JSON.stringify(scriptFilterItems);
 
-alfredItemsJSON;
+scriptFilterItemsJSON;
