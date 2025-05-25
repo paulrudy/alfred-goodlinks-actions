@@ -11,43 +11,39 @@ const defaultSubtitle =
 
 const glApp = Application('GoodLinks');
 glApp.includeStandardAdditions = true;
+const allGLLinksProps = glApp.links().map((l) => l.properties());
 
-const items = glApp.links().reduce((result, link) => {
-  const uid = link.id();
-  const url = link.url();
-  const title = link.title();
-  const read = link().properties().read;
-  const starred = link.starred();
-  const tagNames = link.tagNames();
-  const summary = link.summary();
-  const starredText = starred ? '\u2605' : '\u2606';
-  const readText = read ? 'read' : 'unread';
-  const tagInfo = tagNames.length ? `tags: ${tagNames.join(', ')}` : 'untagged';
+const items = allGLLinksProps.reduce((result, link) => {
+  const starredText = link.starred ? '\u2605' : '\u2606';
+  const readText = link.read ? 'read' : 'unread';
+  const tagInfo = link.tagNames.length
+    ? `tags: ${link.tagNames.join(', ')}`
+    : 'untagged';
   const altSubtitle = `${starredText} | ${readText} | ${tagInfo}`;
 
-  if (!read)
+  if (!link.read)
     result.push({
-      uid: uid,
-      title: title,
-      subtitle: defaultSubtitle === 'show url' ? url : altSubtitle,
-      arg: url,
+      uid: link.uid,
+      title: link.title,
+      subtitle: defaultSubtitle === 'show url' ? link.url : altSubtitle,
+      arg: link.url,
       mods: {
         cmd: {
           valid: true,
-          subtitle: defaultSubtitle === 'show url' ? altSubtitle : url,
+          subtitle: defaultSubtitle === 'show url' ? altSubtitle : link.url,
         },
         alt: {
           valid: true,
           subtitle: 'Copy the URL to the clipboard',
-          arg: url,
+          arg: link.url,
         },
         'cmd+alt': {
           valid: true,
-          subtitle: summary || url,
+          subtitle: link.summary || link.url,
         },
       },
       text: {
-        copy: url,
+        copy: link.url,
       },
     });
 

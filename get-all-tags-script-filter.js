@@ -7,6 +7,7 @@ const cacheDuration =
 
 const glApp = Application('GoodLinks');
 glApp.includeStandardAdditions = true;
+const allGLTagsProps = glApp.tags().map((t) => t.properties());
 
 const taggedLinks = glApp.links().reduce((result, link) => {
   link.tagNames().length && result.push(link.tagNames());
@@ -14,22 +15,20 @@ const taggedLinks = glApp.links().reduce((result, link) => {
   return result;
 }, []);
 
-const items = glApp.tags().map((tag) => {
-  const uid = tag.id();
-  const tagName = tag.name();
+const items = allGLTagsProps.map((tag) => {
   const linksWithTag = taggedLinks.filter((tagNames) =>
-    tagNames.includes(tag.name())
+    tagNames.includes(tag.name)
   );
 
   return {
-    uid: uid,
-    title: tagName,
+    uid: tag.id,
+    title: tag.name,
     subtitle: `${linksWithTag.length} link${
       linksWithTag.length > 1 ? 's' : ''
     }`,
-    arg: tagName,
+    arg: tag.name,
     text: {
-      largetype: tagName,
+      largetype: tag.name,
     },
   };
 });
