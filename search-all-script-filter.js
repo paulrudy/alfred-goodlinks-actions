@@ -10,6 +10,8 @@ function run(argv) {
   const defaultSubtitle =
     $.NSProcessInfo.processInfo.environment.objectForKey('default_subtitle').js;
 
+  const app = Application.currentApplication();
+  app.includeStandardAdditions = true;
   const glApp = Application('GoodLinks');
   glApp.includeStandardAdditions = true;
   const allGLLinksProps = glApp.links().map((l) => l.properties());

@@ -7,8 +7,10 @@ function run(argv) {
     $.NSProcessInfo.processInfo.environment.objectForKey('myvariable').js ||
     3600;
 
-const glApp = Application('GoodLinks');
-glApp.includeStandardAdditions = true;
+  const app = Application.currentApplication();
+  app.includeStandardAdditions = true;
+  const glApp = Application('GoodLinks');
+  glApp.includeStandardAdditions = true;
 const allGLTagsProps = glApp.tags().map((t) => t.properties());
 
   const taggedLinks = glApp.links().reduce((result, link) => {

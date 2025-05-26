@@ -12,6 +12,8 @@ function run(argv) {
   const searchTag =
     $.NSProcessInfo.processInfo.environment.objectForKey('search_tag').js;
 
+  const app = Application.currentApplication();
+  app.includeStandardAdditions = true;
   const glApp = Application('GoodLinks');
   glApp.includeStandardAdditions = true;
   const allGLLinksProps = glApp.links().map((l) => l.properties());
