@@ -45,6 +45,7 @@ function run(argv) {
       text: {
         largetype: tag.name,
       },
+      quicklookurl: null,
     };
   });
 

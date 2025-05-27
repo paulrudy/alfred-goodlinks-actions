@@ -8,10 +8,6 @@ An Alfred workflow for searching and adding links in [GoodLinks](https://goodlin
 
 Use the keyword `gls` to search all links.
 
-Hold `⌘` to view the link's starred status,read/unread status, and tags, if any. (This can be switched in the workflow configuration, so that `⌘` shows the URL, while the default subtitle in the link's info.)
-
-Hold `⌘` + `⌥` to view the link's summary, if any. Action the result to open the link in GoodLinks, or action with `⌥` to copy the link to the clipboard.
-
 Use `glu` to search unread links.
 
 Use `glx` to search starred links.
@@ -23,6 +19,16 @@ Use `glwt` to search for links with a specific tag.
 Use `glr` to open a random unread link in GoodLinks.
 
 Note: The first time a search is invoked, Alfred may take several seconds to display the results. After that, the results are intelligently cached and updated by Alfred, and should appear immediately.
+
+#### Modifier Keys
+
+The default subtext is the link's summary, if available. Hold `⌘` to view the link's starred status,read/unread status, and tags, if any. (These defaults can be switched in the workflow configuration.)
+
+Hold `⌃` to show the link's URL.
+
+Action the result to open the link in GoodLinks, or action with `⌥` to copy the link to the clipboard.
+
+Use Alfred's [Large Type](https://www.alfredapp.com/help/features/large-type/) feature (`⌘`+`L`) to show a large-type view of the link's title, and if available, summary.
 
 ### Add URL to GoodLinks
 

@@ -34,36 +34,41 @@ function run(argv) {
     const tagInfo = link.tagNames.length
       ? `tags: ${link.tagNames.join(', ')}`
       : 'untagged';
-    const altSearchSubtitle = `${starredText} | ${readText} | ${tagInfo}`;
+    const linkInfoSubtitle = `${starredText} | ${readText} | ${tagInfo}`;
+    const summaryText = link.summary || '(No summary available)';
 
     if (link.starred)
       result.push({
         uid: link.uid,
         title: link.title,
         subtitle:
-          defaultSearchSubtitle === 'show url' ? link.url : altSearchSubtitle,
+          defaultSearchSubtitle === 'show summary'
+            ? summaryText
+            : linkInfoSubtitle,
         arg: link.url,
         mods: {
           cmd: {
             valid: true,
             subtitle:
-              defaultSearchSubtitle === 'show url'
-                ? altSearchSubtitle
-                : link.url,
+              defaultSearchSubtitle === 'show summary'
+                ? linkInfoSubtitle
+                : summaryText,
           },
           alt: {
             valid: true,
             subtitle: 'Copy the URL to the clipboard',
             arg: [link.url, 'copy'],
           },
-          'cmd+alt': {
+          ctrl: {
             valid: true,
-            subtitle: link.summary || link.url,
+            subtitle: link.url,
           },
         },
         text: {
           copy: link.url,
+          largetype: `${link.title}\n\n${summaryText}`,
         },
+        quicklookurl: null,
       });
 
     return result;
