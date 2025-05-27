@@ -32,4 +32,4 @@ By default, links are added via GoodLinks "quick save". Hold the `⌥` key to ed
 
 ## Configuration
 
-The workflow provides configuration for keywords and cache duration.
+The workflow provides configuration for default search subtext, keywords, and cache duration.

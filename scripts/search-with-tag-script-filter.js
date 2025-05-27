@@ -12,8 +12,10 @@ function run(argv) {
     Number(
       $.NSProcessInfo.processInfo.environment.objectForKey('cache_duration').js
     ) || 3600;
-  const defaultSubtitle =
-    $.NSProcessInfo.processInfo.environment.objectForKey('default_subtitle').js;
+  const defaultSearchSubtitle =
+    $.NSProcessInfo.processInfo.environment.objectForKey(
+      'default_search_subtitle'
+    ).js;
   // / get workflow environment variables
 
   const cache = JSON.parse(
@@ -47,17 +49,21 @@ function run(argv) {
       const tagInfo = link.tagNames.length
         ? `tags: ${link.tagNames.join(', ')}`
         : 'untagged';
-      const altSubtitle = `${starredText} | ${readText} | ${tagInfo}`;
+      const altSearchSubtitle = `${starredText} | ${readText} | ${tagInfo}`;
 
       return {
         uid: link.uid,
         title: link.title,
-        subtitle: defaultSubtitle === 'show url' ? link.url : altSubtitle,
+        subtitle:
+          defaultSearchSubtitle === 'show url' ? link.url : altSearchSubtitle,
         arg: link.url,
         mods: {
           cmd: {
             valid: true,
-            subtitle: defaultSubtitle === 'show url' ? altSubtitle : link.url,
+            subtitle:
+              defaultSearchSubtitle === 'show url'
+                ? altSearchSubtitle
+                : link.url,
           },
           alt: {
             valid: true,
