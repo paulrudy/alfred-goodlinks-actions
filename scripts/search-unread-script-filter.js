@@ -3,18 +3,24 @@
 'use strict';
 
 function run(argv) {
+  const app = Application.currentApplication();
+  app.includeStandardAdditions = true;
+
+  // get workflow environment variables
   const cacheDuration =
     Number(
       $.NSProcessInfo.processInfo.environment.objectForKey('cache_duration').js
     ) || 3600;
   const defaultSubtitle =
     $.NSProcessInfo.processInfo.environment.objectForKey('default_subtitle').js;
+  // / get workflow environment variables
 
-  const app = Application.currentApplication();
-  app.includeStandardAdditions = true;
-  const glApp = Application('GoodLinks');
-  glApp.includeStandardAdditions = true;
-  const allGLLinksProps = glApp.links().map((l) => l.properties());
+  const cache = JSON.parse(
+    app.doShellScript(
+      'osascript -l JavaScript ./scripts/cached-index-handler.js'
+    )
+  );
+  const allGLLinksProps = cache.all_gl_links_props;
 
   const items = allGLLinksProps.reduce((result, link) => {
     const starredText = link.starred ? '\u2605' : '\u2606';

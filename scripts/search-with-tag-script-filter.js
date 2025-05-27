@@ -3,6 +3,10 @@
 'use strict';
 
 function run(argv) {
+  const app = Application.currentApplication();
+  app.includeStandardAdditions = true;
+
+  // get workflow environment variables
   const cacheDuration =
     Number(
       $.NSProcessInfo.processInfo.environment.objectForKey('cache_duration').js
@@ -11,12 +15,14 @@ function run(argv) {
     $.NSProcessInfo.processInfo.environment.objectForKey('default_subtitle').js;
   const searchTag =
     $.NSProcessInfo.processInfo.environment.objectForKey('search_tag').js;
+  // / get workflow environment variables
 
-  const app = Application.currentApplication();
-  app.includeStandardAdditions = true;
-  const glApp = Application('GoodLinks');
-  glApp.includeStandardAdditions = true;
-  const allGLLinksProps = glApp.links().map((l) => l.properties());
+  const cache = JSON.parse(
+    app.doShellScript(
+      'osascript -l JavaScript ./scripts/cached-index-handler.js'
+    )
+  );
+  const allGLLinksProps = cache.all_gl_links_props;
 
   const filteredItems = allGLLinksProps.filter((link) =>
     link.tagNames.includes(searchTag)
