@@ -53,7 +53,7 @@ function run(argv) {
         alt: {
           valid: true,
           subtitle: 'Copy the URL to the clipboard',
-          arg: link.url,
+          arg: [link.url, 'copy'],
         },
         'cmd+alt': {
           valid: true,
