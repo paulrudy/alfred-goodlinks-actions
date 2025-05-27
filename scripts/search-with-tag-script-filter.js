@@ -23,6 +23,10 @@ function run(argv) {
     )
   );
   const allGLLinksProps = cache.all_gl_links_props;
+  const cacheSecondsRemaining = Math.round(
+    (new Date(cache.cache_file_props.expire_dt) - Date.now()) / 1000
+  );
+  const alfredCacheSecondsRemaining = cacheSecondsRemaining - 1;
 
   const filteredItems = allGLLinksProps.filter((link) =>
     link.tagNames.includes(searchTag)
@@ -63,7 +67,7 @@ function run(argv) {
   });
 
   const scriptFilterItems = {
-    cache: { seconds: cacheDuration, loosereload: true },
+    cache: { seconds: alfredCacheSecondsRemaining, loosereload: true },
     ...{ items },
   };
 

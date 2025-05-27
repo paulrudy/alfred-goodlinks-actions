@@ -19,6 +19,10 @@ function run(argv) {
   );
   const allGLTagsProps = cache.all_gl_tags_props;
   const allGLLinksProps = cache.all_gl_links_props;
+  const cacheSecondsRemaining = Math.round(
+    (new Date(cache.cache_file_props.expire_dt) - Date.now()) / 1000
+  );
+  const alfredCacheSecondsRemaining = cacheSecondsRemaining - 1;
 
   const taggedLinks = allGLLinksProps.reduce((result, link) => {
     link.tagNames.length && result.push(link.tagNames);
@@ -45,7 +49,7 @@ function run(argv) {
   });
 
   const scriptFilterItems = {
-    cache: { seconds: cacheDuration, loosereload: true },
+    cache: { seconds: alfredCacheSecondsRemaining, loosereload: true },
     ...{ items },
   };
 

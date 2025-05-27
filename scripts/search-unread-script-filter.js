@@ -21,6 +21,10 @@ function run(argv) {
     )
   );
   const allGLLinksProps = cache.all_gl_links_props;
+  const cacheSecondsRemaining = Math.round(
+    (new Date(cache.cache_file_props.expire_dt) - Date.now()) / 1000
+  );
+  const alfredCacheSecondsRemaining = cacheSecondsRemaining - 1;
 
   const items = allGLLinksProps.reduce((result, link) => {
     const starredText = link.starred ? '\u2605' : '\u2606';
@@ -60,7 +64,7 @@ function run(argv) {
   }, []);
 
   const scriptFilterItems = {
-    cache: { seconds: cacheDuration, loosereload: true },
+    cache: { seconds: alfredCacheSecondsRemaining, loosereload: true },
     ...{ items },
   };
 
