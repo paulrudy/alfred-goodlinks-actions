@@ -6,12 +6,6 @@ function run(argv) {
   const app = Application.currentApplication();
   app.includeStandardAdditions = true;
 
-  // get workflow environment variables
-  const cacheDuration =
-    $.NSProcessInfo.processInfo.environment.objectForKey('myvariable').js ||
-    3600;
-  // / get workflow environment variables
-
   const cache = JSON.parse(
     app.doShellScript(
       'osascript -l JavaScript ./scripts/cached-index-handler.js'

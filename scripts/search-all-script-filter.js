@@ -7,10 +7,6 @@ function run(argv) {
   app.includeStandardAdditions = true;
 
   // get workflow environment variables
-  const cacheDuration =
-    Number(
-      $.NSProcessInfo.processInfo.environment.objectForKey('cache_duration').js
-    ) || 3600;
   const defaultSearchSubtitle =
     $.NSProcessInfo.processInfo.environment.objectForKey(
       'default_search_subtitle'
