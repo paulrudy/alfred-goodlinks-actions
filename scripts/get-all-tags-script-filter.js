@@ -18,15 +18,9 @@ function run(argv) {
   );
   const alfredCacheSecondsRemaining = cacheSecondsRemaining - 1;
 
-  const taggedLinks = allGLLinksProps.reduce((result, link) => {
-    link.tagNames.length && result.push(link.tagNames);
-
-    return result;
-  }, []);
-
   const items = allGLTagsProps.map((tag) => {
-    const linksWithTag = taggedLinks.filter((tagNames) =>
-      tagNames.includes(tag.name)
+    const linksWithTag = allGLLinksProps.filter((link) =>
+      link.tagNames.includes(tag.name)
     );
 
     return {

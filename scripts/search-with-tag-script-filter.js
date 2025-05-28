@@ -25,30 +25,17 @@ function run(argv) {
   );
   const alfredCacheSecondsRemaining = cacheSecondsRemaining - 1;
 
-  const filteredItems = allGLLinksProps.filter((link) =>
-    link.tagNames.includes(searchTag)
-  );
+  const items = allGLLinksProps.reduce((result, link) => {
+    const starredText = link.starred ? '\u2605' : '\u2606';
+    const readText = link.read ? 'read' : 'unread';
+    const tagInfo = link.tagNames.length
+      ? `tags: ${link.tagNames.join(', ')}`
+      : 'untagged';
+    const linkInfoSubtitle = `${starredText} | ${readText} | ${tagInfo}`;
+    const summaryText = link.summary || '(No summary available)';
 
-  let items;
-  if (!filteredItems.length) {
-    items = [
-      {
-        title: `No results for tag "${searchTag}"`,
-        subtitle: 'View existing GoodLinks tags?',
-        arg: 'trigger:self_list_tags',
-      },
-    ];
-  } else {
-    items = filteredItems.map((link) => {
-      const starredText = link.starred ? '\u2605' : '\u2606';
-      const readText = link.read ? 'read' : 'unread';
-      const tagInfo = link.tagNames.length
-        ? `tags: ${link.tagNames.join(', ')}`
-        : 'untagged';
-      const linkInfoSubtitle = `${starredText} | ${readText} | ${tagInfo}`;
-      const summaryText = link.summary || '(No summary available)';
-
-      return {
+    if (link.tagNames.includes(searchTag))
+      result.push({
         uid: link.uid,
         title: link.title,
         subtitle:
@@ -79,7 +66,16 @@ function run(argv) {
           largetype: `${link.title}\n\n${summaryText}`,
         },
         quicklookurl: null,
-      };
+      });
+
+    return result;
+  }, []);
+
+  if (!items.length) {
+    items.push({
+      title: `No results for tag "${searchTag}"`,
+      subtitle: 'View existing GoodLinks tags?',
+      arg: 'trigger:self_list_tags',
     });
   }
 
