@@ -36,6 +36,12 @@ Add a link to GoodLinks using the [Universal Action](https://www.alfredapp.com/h
 
 By default, links are added via GoodLinks "quick save". Hold the `⌥` key to edit the link info in GoodLinks.
 
+### Cached Workflow Data
+
+By default, the workflow caches GoodLinks data for 3600 seconds (1 hour), using a combination of Alfred's built-in script-filter cacheing and a cache file. The caches are rebuilt any time a URL is added via this workflow, or when initiating a search on an expired cache.
+
+Use keyword `:glflush` to delete the caches. Afterwards, adding a URL or invoking a search will rebuild the cache with updated data from GoodLinks.
+
 ## Configuration
 
 The workflow provides configuration for default search subtext, keywords, and cache duration.
