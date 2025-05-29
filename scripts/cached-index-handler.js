@@ -33,8 +33,16 @@ function run(argv) {
   let cacheJSON;
   if (isNaN(currentCacheExpiration) || cacheSecondsRemaining <= 0) {
     // no saved cache or cache expired
-    const allGLTagsProps = glApp.tags().map((t) => t.properties());
     const allGLLinksProps = glApp.links().map((l) => l.properties());
+    const allGLTagsProps = glApp.tags().map((t) => {
+      const linksWithTag = allGLLinksProps.filter(
+        (l) => l.tagNames.length && l.tagNames.includes(t.name())
+      );
+      return {
+        ...t.properties(),
+        tagged_links_count: linksWithTag.length,
+      };
+    });
     const newCacheExpirationISO = new Date(
       Date.now() + cacheDuration * 1000
     ).toISOString();
