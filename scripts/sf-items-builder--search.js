@@ -41,8 +41,8 @@ function run(argv) {
   let items, noResultsItems;
   if (filterFor === 'links-with-tag') {
     noResultsItems = {
-      title: `No results for tag "${filterArg}"`,
-      subtitle: 'View existing GoodLinks tags?',
+      title: 'View existing GoodLinks tags',
+      subtitle: `No results for tag "${filterArg}"`,
       arg: 'trigger:self_list_tags',
     };
   } else {
@@ -127,7 +127,7 @@ function run(argv) {
     items = items.slice(0, 1);
     items.push({
       title: 'Get another…',
-      subtitle: 'Search for another random link?',
+      subtitle: 'Search for another random link',
       arg: 'trigger:self_random_unread',
       icon: {
         path: './icons/sf-symbols-red-arrow.clockwise.circle.fill.png',
