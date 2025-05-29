@@ -2,6 +2,16 @@
 
 'use strict';
 
+function fisherYates(array) {
+  let count = array.length;
+  while (count) {
+    const randomIndex = (Math.random() * count--) | 0;
+    const temp = array[count];
+    array[count] = array[randomIndex];
+    array[randomIndex] = temp;
+  }
+}
+
 function run(argv) {
   const [filterFor, filterArg] = argv[0].split(',').map((item) => item.trim());
   const useAlfredCache = argv[1] ? JSON.parse(argv[1]) : true;
@@ -58,7 +68,7 @@ function run(argv) {
       };
     });
   } else {
-    items = allGLLinksProps.reduce((result, link) => {
+    items = allGLLinksProps.reduce((result, link, i) => {
       const starredText = link.starred ? '\u2605' : '\u2606';
       const readText = link.read ? 'read' : 'unread';
       const tagInfo = link.tagNames.length
@@ -71,6 +81,7 @@ function run(argv) {
         'links-unread': !link.read,
         'links-starred': link.starred,
         'links-with-tag': link.tagNames.includes(filterArg),
+        'links-random-unread': !link.read,
       };
 
       if (filterConditionMap[filterFor])
@@ -109,6 +120,19 @@ function run(argv) {
 
       return result;
     }, []);
+  }
+
+  if (filterFor === 'links-random-unread') {
+    fisherYates(items); // randomize array
+    items = items.slice(0, 1);
+    items.push({
+      title: 'Get another…',
+      subtitle: 'Search for another random link?',
+      arg: 'trigger:self_random_unread',
+      icon: {
+        path: './icons/sf-symbols-red-arrow.clockwise.circle.fill.png',
+      },
+    });
   }
 
   if (!items.length) {
