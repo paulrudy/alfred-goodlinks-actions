@@ -39,7 +39,7 @@ function run(argv) {
   const alfredCacheSecondsRemaining = cacheSecondsRemaining - 1;
 
   let items, noResultsItems;
-  if (filterFor === 'with-tag') {
+  if (filterFor === 'links-with-tag') {
     noResultsItems = {
       title: `No results for tag "${filterArg}"`,
       subtitle: 'View existing GoodLinks tags?',
