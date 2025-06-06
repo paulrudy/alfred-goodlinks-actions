@@ -104,7 +104,10 @@ function run(argv) {
             alt: {
               valid: true,
               subtitle: 'Copy the URL to the clipboard',
-              arg: [link.url, 'copy'],
+              arg: link.url,
+              variables: {
+                action: 'copy',
+              },
             },
             ctrl: {
               valid: true,
