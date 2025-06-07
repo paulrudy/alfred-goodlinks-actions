@@ -18,8 +18,8 @@ function run(argv) {
   const cachePath = $.NSProcessInfo.processInfo.environment.objectForKey(
     'alfred_workflow_cache'
   ).js;
-  const cacheRebuilding =
-    $.NSProcessInfo.processInfo.environment.objectForKey('cache_rebuilding').js;
+  const cacheStatus =
+    $.NSProcessInfo.processInfo.environment.objectForKey('cache_status').js;
   const bundleID = $.NSProcessInfo.processInfo.environment.objectForKey(
     'alfred_workflow_bundleid'
   ).js;
@@ -39,12 +39,12 @@ function run(argv) {
 
   let cacheJSON;
   if (
-    cacheRebuilding != 'true' &&
+    cacheStatus != 'rebuilding' &&
     (isNaN(currentCacheExpiration) || cacheSecondsRemaining <= 0)
   ) {
     // cache isn't being rebuilt and no saved cache or cache expired
-    alfredApp.setConfiguration('cache_rebuilding', {
-      toValue: 'true',
+    alfredApp.setConfiguration('cache_status', {
+      toValue: 'rebuilding',
       inWorkflow: bundleID,
     });
     const tmpFile = `${cachePath}/tmp.json`;
@@ -77,8 +77,8 @@ function run(argv) {
     cacheJSON = app.doShellScript(`cat '${cacheFile}'`);
   }
 
-  alfredApp.setConfiguration('cache_rebuilding', {
-    toValue: 'false',
+  alfredApp.setConfiguration('cache_status', {
+    toValue: 'done',
     inWorkflow: bundleID,
   });
 

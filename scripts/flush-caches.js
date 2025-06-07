@@ -24,8 +24,8 @@ function run(argv) {
   app.doShellScript(`[[ -d "${cachePath}" ]] || mkdir -p "${cachePath}"`);
   const cacheFile = `${cachePath}/gl.json`;
   app.doShellScript(`rm -f '${cacheFile}'`);
-  alfredApp.setConfiguration('cache_rebuilding', {
-    toValue: 'false',
+  alfredApp.setConfiguration('cache_status', {
+    toValue: 'flushed',
     inWorkflow: bundleID,
   });
 
