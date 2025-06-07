@@ -5,6 +5,8 @@
 function run(argv) {
   const app = Application.currentApplication();
   app.includeStandardAdditions = true;
+  const alfredApp = Application('Alfred');
+  alfredApp.includeStandardAdditions = true;
   const glApp = Application('GoodLinks');
   glApp.includeStandardAdditions = true;
 
@@ -15,6 +17,11 @@ function run(argv) {
     ) || 3600;
   const cachePath = $.NSProcessInfo.processInfo.environment.objectForKey(
     'alfred_workflow_cache'
+  ).js;
+  const cacheRebuilding =
+    $.NSProcessInfo.processInfo.environment.objectForKey('cache_rebuilding').js;
+  const bundleID = $.NSProcessInfo.processInfo.environment.objectForKey(
+    'alfred_workflow_bundleid'
   ).js;
   // / get workflow environment variables
 
@@ -31,8 +38,17 @@ function run(argv) {
   );
 
   let cacheJSON;
-  if (isNaN(currentCacheExpiration) || cacheSecondsRemaining <= 0) {
-    // no saved cache or cache expired
+  if (
+    cacheRebuilding != 'true' &&
+    (isNaN(currentCacheExpiration) || cacheSecondsRemaining <= 0)
+  ) {
+    // cache isn't being rebuilt and no saved cache or cache expired
+    alfredApp.setConfiguration('cache_rebuilding', {
+      toValue: 'true',
+      inWorkflow: bundleID,
+    });
+    const tmpFile = `${cachePath}/tmp.json`;
+    app.doShellScript(`touch '${tmpFile}'`);
     const allGLLinksProps = glApp.links().map((l) => l.properties());
     const allGLTagsProps = glApp.tags().map((t) => {
       const linksWithTag = allGLLinksProps.filter(
@@ -54,11 +70,17 @@ function run(argv) {
       all_gl_links_props: allGLLinksProps,
     });
 
-    app.doShellScript(`tee '${cacheFile}' <<-'EOF'\n${cacheJSON}\nEOF`); // literal heredoc newlines preserve javascript indentation
+    app.doShellScript(`tee '${tmpFile}' <<-'EOF'\n${cacheJSON}\nEOF`); // literal heredoc newlines preserve javascript indentation
+    app.doShellScript(`mv '${tmpFile}' '${cacheFile}'`);
   } else {
     // get items from saved cache
     cacheJSON = app.doShellScript(`cat '${cacheFile}'`);
   }
+
+  alfredApp.setConfiguration('cache_rebuilding', {
+    toValue: 'false',
+    inWorkflow: bundleID,
+  });
 
   return cacheJSON;
 }
