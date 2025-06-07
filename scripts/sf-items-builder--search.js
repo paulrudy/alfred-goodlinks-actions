@@ -22,25 +22,11 @@ function run(argv) {
   alfredApp.includeStandardAdditions = true;
 
   // get workflow environment variables
-  const cacheStatus =
-    $.NSProcessInfo.processInfo.environment.objectForKey('cache_status').js;
-  const bundleID = $.NSProcessInfo.processInfo.environment.objectForKey(
-    'alfred_workflow_bundleid'
-  ).js;
   const defaultSearchSubtitle =
     $.NSProcessInfo.processInfo.environment.objectForKey(
       'default_search_subtitle'
     ).js;
   // / get workflow environment variables
-
-  const pleaseWaitSubtextCache =
-    cacheStatus != 'done'
-      ? 'Building cache. This may take a few seconds…'
-      : 'Querying cached GoodLinks…';
-  alfredApp.setConfiguration('please_wait_subtext_cache', {
-    toValue: pleaseWaitSubtextCache,
-    inWorkflow: bundleID,
-  });
 
   const cache = JSON.parse(
     app.doShellScript(

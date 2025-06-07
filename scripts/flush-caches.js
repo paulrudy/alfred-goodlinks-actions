@@ -24,10 +24,10 @@ function run(argv) {
   app.doShellScript(`[[ -d "${cachePath}" ]] || mkdir -p "${cachePath}"`);
   const cacheFile = `${cachePath}/gl.json`;
   app.doShellScript(`rm -f '${cacheFile}'`);
-  alfredApp.setConfiguration('cache_status', {
-    toValue: 'flushed',
-    inWorkflow: bundleID,
-  });
+  const cacheStatus = '';
+  app.doShellScript(
+    `osascript -l JavaScript ./scripts/set-caching-vars.js '${cacheStatus}'`
+  );
 
   reloadWorkflow({ alfredApp, bundleID });
 }

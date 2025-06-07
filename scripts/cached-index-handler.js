@@ -5,8 +5,6 @@
 function run(argv) {
   const app = Application.currentApplication();
   app.includeStandardAdditions = true;
-  const alfredApp = Application('Alfred');
-  alfredApp.includeStandardAdditions = true;
   const glApp = Application('GoodLinks');
   glApp.includeStandardAdditions = true;
 
@@ -18,12 +16,13 @@ function run(argv) {
   const cachePath = $.NSProcessInfo.processInfo.environment.objectForKey(
     'alfred_workflow_cache'
   ).js;
-  const cacheStatus =
+  let cacheStatus =
     $.NSProcessInfo.processInfo.environment.objectForKey('cache_status').js;
-  const bundleID = $.NSProcessInfo.processInfo.environment.objectForKey(
-    'alfred_workflow_bundleid'
-  ).js;
   // / get workflow environment variables
+
+  app.doShellScript(
+    `osascript -l JavaScript ./scripts/set-caching-vars.js '${cacheStatus}'`
+  );
 
   app.doShellScript(`[[ -d "${cachePath}" ]] || mkdir -p "${cachePath}"`);
   const cacheFile = `${cachePath}/gl.json`;
@@ -43,10 +42,10 @@ function run(argv) {
     (isNaN(currentCacheExpiration) || cacheSecondsRemaining <= 0)
   ) {
     // cache isn't being rebuilt and no saved cache or cache expired
-    alfredApp.setConfiguration('cache_status', {
-      toValue: 'rebuilding',
-      inWorkflow: bundleID,
-    });
+    cacheStatus = 'rebuilding';
+    app.doShellScript(
+      `osascript -l JavaScript ./scripts/set-caching-vars.js '${cacheStatus}'`
+    );
     const tmpFile = `${cachePath}/tmp.json`;
     app.doShellScript(`touch '${tmpFile}'`);
     const allGLLinksProps = glApp.links().map((l) => l.properties());
@@ -77,10 +76,10 @@ function run(argv) {
     cacheJSON = app.doShellScript(`cat '${cacheFile}'`);
   }
 
-  alfredApp.setConfiguration('cache_status', {
-    toValue: 'done',
-    inWorkflow: bundleID,
-  });
+  cacheStatus = 'done';
+  app.doShellScript(
+    `osascript -l JavaScript ./scripts/set-caching-vars.js '${cacheStatus}'`
+  );
 
   return cacheJSON;
 }
