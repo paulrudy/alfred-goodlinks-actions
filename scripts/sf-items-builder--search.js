@@ -18,8 +18,6 @@ function run(argv) {
 
   const app = Application.currentApplication();
   app.includeStandardAdditions = true;
-  const alfredApp = Application('Alfred');
-  alfredApp.includeStandardAdditions = true;
 
   // get workflow environment variables
   const defaultSearchSubtitle =
