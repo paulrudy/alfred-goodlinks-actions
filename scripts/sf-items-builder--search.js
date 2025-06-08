@@ -27,9 +27,7 @@ function run(argv) {
   // / get workflow environment variables
 
   const cache = JSON.parse(
-    app.doShellScript(
-      'osascript -l JavaScript ./scripts/cached-index-handler.js'
-    )
+    app.doShellScript('osascript -l JavaScript ./scripts/manage-data.js')
   );
   const allGLTagsProps = cache.all_gl_tags_props;
   const allGLLinksProps = cache.all_gl_links_props;
