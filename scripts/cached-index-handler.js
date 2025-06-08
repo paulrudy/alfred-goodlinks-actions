@@ -2,6 +2,9 @@
 
 'use strict';
 
+const getEnvVar = (varName) =>
+  $.NSProcessInfo.processInfo.environment.objectForKey(varName).js;
+
 function run(argv) {
   const app = Application.currentApplication();
   app.includeStandardAdditions = true;
@@ -9,15 +12,9 @@ function run(argv) {
   glApp.includeStandardAdditions = true;
 
   // get workflow environment variables
-  const cacheDuration =
-    Number(
-      $.NSProcessInfo.processInfo.environment.objectForKey('cache_duration').js
-    ) || 3600;
-  const cachePath = $.NSProcessInfo.processInfo.environment.objectForKey(
-    'alfred_workflow_cache'
-  ).js;
-  let cacheStatus =
-    $.NSProcessInfo.processInfo.environment.objectForKey('cache_status').js;
+  const cacheDuration = Number(getEnvVar('cache_duration')) || 3600;
+  const cachePath = getEnvVar('alfred_workflow_cache');
+  let cacheStatus = getEnvVar('cache_status');
   // / get workflow environment variables
 
   app.doShellScript(

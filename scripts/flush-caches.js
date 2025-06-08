@@ -2,9 +2,12 @@
 
 'use strict';
 
+const getEnvVar = (varName) =>
+  $.NSProcessInfo.processInfo.environment.objectForKey(varName).js;
+
 const reloadWorkflow = ({ alfredApp, bundleID }) => {
   alfredApp.reloadWorkflow(bundleID);
-}
+};
 
 function run(argv) {
   const app = Application.currentApplication();
@@ -13,12 +16,8 @@ function run(argv) {
   alfredApp.includeStandardAdditions = true;
 
   // get workflow environment variables
-  const cachePath = $.NSProcessInfo.processInfo.environment.objectForKey(
-    'alfred_workflow_cache'
-  ).js;
-  const bundleID = $.NSProcessInfo.processInfo.environment.objectForKey(
-    'alfred_workflow_bundleid'
-  ).js;
+  const cachePath = getEnvVar('alfred_workflow_cache');
+  const bundleID = getEnvVar('alfred_workflow_bundleid');
   // / get workflow environment variables
 
   app.doShellScript(`[[ -d "${cachePath}" ]] || mkdir -p "${cachePath}"`);

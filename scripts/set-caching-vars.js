@@ -2,6 +2,9 @@
 
 'use strict';
 
+const getEnvVar = (varName) =>
+  $.NSProcessInfo.processInfo.environment.objectForKey(varName).js;
+
 function run(argv) {
   const cacheStatus = argv[0];
 
@@ -9,9 +12,7 @@ function run(argv) {
   alfredApp.includeStandardAdditions = true;
 
   // get workflow environment variables
-  const bundleID = $.NSProcessInfo.processInfo.environment.objectForKey(
-    'alfred_workflow_bundleid'
-  ).js;
+  const bundleID = getEnvVar('alfred_workflow_bundleid');
   // / get workflow environment variables
 
   if (cacheStatus.length) {

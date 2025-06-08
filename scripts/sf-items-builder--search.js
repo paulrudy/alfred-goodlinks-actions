@@ -2,6 +2,9 @@
 
 'use strict';
 
+const getEnvVar = (varName) =>
+  $.NSProcessInfo.processInfo.environment.objectForKey(varName).js;
+
 const fisherYates = (array) => {
   let count = array.length;
   while (count) {
@@ -20,10 +23,7 @@ function run(argv) {
   app.includeStandardAdditions = true;
 
   // get workflow environment variables
-  const defaultSearchSubtitle =
-    $.NSProcessInfo.processInfo.environment.objectForKey(
-      'default_search_subtitle'
-    ).js;
+  const defaultSearchSubtitle = getEnvVar('default_search_subtitle');
   // / get workflow environment variables
 
   const cache = JSON.parse(
