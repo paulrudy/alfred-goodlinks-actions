@@ -15,18 +15,18 @@ function run(argv) {
   const alfredApp = Application('Alfred');
   alfredApp.includeStandardAdditions = true;
 
-  // get workflow environment variables
   const cachePath = getEnvVar('alfred_workflow_cache');
   const bundleID = getEnvVar('alfred_workflow_bundleid');
-  // / get workflow environment variables
 
   app.doShellScript(`[[ -d "${cachePath}" ]] || mkdir -p "${cachePath}"`);
   const cacheFile = `${cachePath}/gl.json`;
   app.doShellScript(`rm -f '${cacheFile}'`);
-  const cacheStatus = '';
-  app.doShellScript(
-    `osascript -l JavaScript ./scripts/set-caching-vars.js '${cacheStatus}'`
-  );
+  alfredApp.removeConfiguration('cache_status', {
+    inWorkflow: bundleID,
+  });
+  alfredApp.removeConfiguration('cache_status_text', {
+    inWorkflow: bundleID,
+  });
 
   reloadWorkflow({ alfredApp, bundleID });
 }
