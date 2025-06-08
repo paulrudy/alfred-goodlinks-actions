@@ -22,15 +22,34 @@ function run(argv) {
   const app = Application.currentApplication();
   app.includeStandardAdditions = true;
 
-  // get workflow environment variables
   const defaultSearchSubtitle = getEnvVar('default_search_subtitle');
-  // / get workflow environment variables
 
+  const titlesMap = {
+    'links-all': 'title_text_search_all',
+    'links-unread': 'title_text_search_unread',
+    'links-starred': 'title_text_search_starred',
+    'links-with-tag': 'title_text_search_with_tag',
+    'links-random-unread': 'title_text_search_random_unread',
+    tags: 'title_text_search_tags',
+  };
+  const cacheStatusTitle = getEnvVar(titlesMap[filterFor]);
+  const cacheStatusSubtext = getEnvVar('cache_status_text');
   const cache = JSON.parse(
-    app.doShellScript(
-      'osascript -l JavaScript ./scripts/cached-index-handler.js'
-    )
+    app.doShellScript('osascript -l JavaScript ./scripts/manage-data.js')
   );
+
+  if (!cache) {
+    return JSON.stringify({
+      rerun: 0.25,
+      items: [
+        {
+          title: cacheStatusTitle,
+          subtitle: cacheStatusSubtext,
+        },
+      ],
+    });
+  }
+
   const allGLTagsProps = cache.all_gl_tags_props;
   const allGLLinksProps = cache.all_gl_links_props;
   const cacheSecondsRemaining = Math.round(
