@@ -25,12 +25,12 @@ function run(argv) {
       inWorkflow: bundleID,
     });
   }
-  const pleaseWaitSubtextCache =
+  const cacheStatusSubtext =
     cacheStatus != 'done'
       ? 'Building cache. This may take a few seconds…'
       : 'Querying cached GoodLinks…';
-  alfredApp.setConfiguration('please_wait_subtext_cache', {
-    toValue: pleaseWaitSubtextCache,
+  alfredApp.setConfiguration('cache_status_text', {
+    toValue: cacheStatusSubtext,
     inWorkflow: bundleID,
   });
 }
