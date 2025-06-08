@@ -2,7 +2,7 @@
 
 'use strict';
 
-function reloadWorkflow({ alfredApp, bundleID }) {
+const reloadWorkflow = ({ alfredApp, bundleID }) => {
   alfredApp.reloadWorkflow(bundleID);
 }
 

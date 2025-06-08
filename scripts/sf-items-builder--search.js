@@ -2,7 +2,7 @@
 
 'use strict';
 
-function fisherYates(array) {
+const fisherYates = (array) => {
   let count = array.length;
   while (count) {
     const randomIndex = (Math.random() * count--) | 0;
@@ -10,7 +10,7 @@ function fisherYates(array) {
     array[count] = array[randomIndex];
     array[randomIndex] = temp;
   }
-}
+};
 
 function run(argv) {
   const [filterFor, filterArg] = argv[0].split(',').map((item) => item.trim());
