@@ -10,11 +10,11 @@ Add and search for links in [GoodLinks](https://goodlinks.app).
 
 Add the URL of the frontmost browser's active tab to GoodLinks via the `glb` keyword.
 
-![screenshot of glb keyword](./screenshots/glb-keyword.png)
+![screenshot of glb keyword](src/screenshots/glb-keyword.png)
 
 Add any link to GoodLinks via the [Universal Action](https://www.alfredapp.com/help/features/universal-actions/).
 
-![screenshot of url add universal action](./screenshots/add-url-universal-action.png)
+![screenshot of url add universal action](src/screenshots/add-url-universal-action.png)
 
 #### Add URL Modifier Keys
 - <kbd>↩︎</kbd> Add URL to GoodLinks
@@ -24,27 +24,27 @@ Add any link to GoodLinks via the [Universal Action](https://www.alfredapp.com/h
 
 Search all links via the `gla` keyword.
 
-![screenshot of gla keyword](./screenshots/gla-keyword.png)
+![screenshot of gla keyword](src/screenshots/gla-keyword.png)
 
 Search unread links via the `glu` keyword.
 
-![screenshot of glu keyword](./screenshots/glu-keyword.png)
+![screenshot of glu keyword](src/screenshots/glu-keyword.png)
 
 Search for a random unread link via the `gl?` keyword, with the option to search again.
 
-![screenshot of gl? keyword](./screenshots/gl-question-mark-keyword.png)
+![screenshot of gl? keyword](src/screenshots/gl-question-mark-keyword.png)
 
 Search starred links via the `gls` keyword.
 
-![screenshot of gls keyword](./screenshots/gls-keyword.png)
+![screenshot of gls keyword](src/screenshots/gls-keyword.png)
 
 Search for a tag via the `glt` keyword.
 
-![screenshot of glt keyword](./screenshots/glt-keyword.png)
+![screenshot of glt keyword](src/screenshots/glt-keyword.png)
 
 To get links with a specific tag, action the result, or enter a tag name via the `glwt` keyword.
 
-![screenshot of glwt keyword](./screenshots/glwt-keyword.png)
+![screenshot of glwt keyword](src/screenshots/glwt-keyword.png)
 
 #### Search Modifier Keys
 
@@ -58,7 +58,7 @@ To get links with a specific tag, action the result, or enter a tag name via the
 
 Delete the workflow's caches via the `:glflush` keyword.
 
-![screenshot of :glflush keyword](./screenshots/glflush-keyword.png)
+![screenshot of :glflush keyword](src/screenshots/glflush-keyword.png)
 
 Afterwards, adding a URL or invoking a search will rebuild the cache with updated data from GoodLinks.
 
