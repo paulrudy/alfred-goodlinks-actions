@@ -550,8 +550,6 @@
 			<integer>1</integer>
 		</dict>
 		<dict>
-			<key>config</key>
-			<dict/>
 			<key>type</key>
 			<string>alfred.workflow.utility.junction</string>
 			<key>uid</key>
@@ -1256,6 +1254,7 @@ Add any link to GoodLinks via the [Universal Action](https://www.alfredapp.com/h
 ![screenshot of url add universal action](./screenshots/add-url-universal-action.png)
 
 #### Add URL Modifier Keys
+
 - &lt;kbd&gt;↩︎&lt;/kbd&gt; Add URL to GoodLinks
 - &lt;kbd&gt;⌥&lt;/kbd&gt;&lt;kbd&gt;↩︎&lt;/kbd&gt; Add URL and edit info (tags, etc.) in GoodLinks
 
@@ -1786,7 +1785,7 @@ The workflow provides configuration for default search subtext, keywords, and ca
 		<string>cache_status_text</string>
 	</array>
 	<key>version</key>
-	<string>2.13.0</string>
+	<string>2.13.1</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>

@@ -17,6 +17,7 @@ Add any link to GoodLinks via the [Universal Action](https://www.alfredapp.com/h
 ![screenshot of url add universal action](src/screenshots/add-url-universal-action.png)
 
 #### Add URL Modifier Keys
+
 - <kbd>↩︎</kbd> Add URL to GoodLinks
 - <kbd>⌥</kbd><kbd>↩︎</kbd> Add URL and edit info (tags, etc.) in GoodLinks
 
