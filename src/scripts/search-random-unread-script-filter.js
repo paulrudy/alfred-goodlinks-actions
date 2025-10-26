@@ -1,14 +1,14 @@
 #!/usr/bin/env osascript -l JavaScript
 
-'use strict';
+"use strict";
 
 function run(argv) {
-  const app = Application.currentApplication();
-  app.includeStandardAdditions = true;
+	const app = Application.currentApplication();
+	app.includeStandardAdditions = true;
 
-  const scriptFilterItemsJSON = app.doShellScript(
-    `osascript -l JavaScript ./scripts/sf-items-builder--search.js 'links-random-unread' false`
-  );
+	const scriptFilterItemsJSON = app.doShellScript(
+		`osascript -l JavaScript ./scripts/sf-items-builder--search.js 'links-random-unread' false`,
+	);
 
-  return scriptFilterItemsJSON;
+	return scriptFilterItemsJSON;
 }
