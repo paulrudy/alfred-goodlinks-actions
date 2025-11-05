@@ -1781,7 +1781,7 @@ The workflow provides configuration for default search subtext, keywords, and ca
 		<string>cache_status_text</string>
 	</array>
 	<key>version</key>
-	<string>2.13.1</string>
+	<string>2.13.2</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>
