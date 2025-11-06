@@ -1,5 +1,7 @@
 # GoodLinks Actions - Alfred workflow
 
+[Available on the Alfred Gallery](https://alfred.app/workflows/paulrudy/goodlinks-actions/)
+
 [Alfred forum thread](https://www.alfredforum.com/topic/23148-goodlinks-actions/)
 
 ## Usage
