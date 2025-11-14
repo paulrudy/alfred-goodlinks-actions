@@ -1,5 +1,8 @@
 # GoodLinks Actions - Alfred workflow
 
+> [!IMPORTANT]
+> This project has [migrated to Codeberg](https://codeberg.org/paulrudy/alfred-goodlinks-actions) as of release 2.13.4. All updates, issues, and pull requests will occur there.
+
 [Available on the Alfred Gallery](https://alfred.app/workflows/paulrudy/goodlinks-actions/)
 
 [Alfred forum thread](https://www.alfredforum.com/topic/23148-goodlinks-actions/)
